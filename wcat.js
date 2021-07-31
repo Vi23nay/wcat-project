@@ -35,12 +35,7 @@ if(inputArr[0].charAt(0) != '-'){
 //handling 3rd command -s
 let isSpresent = optionArr.includes("-s");
 if(isSpresent){
-    for(let i=0;i<filesArr.length;i++){
-        if(fs.existsSync(filesArr[i]) == false){
-            console.log("Invalid path!!!");
-            return;
-        }
-    }
+    
     let content = "";
     for(let i = 0 ; i < filesArr.length ; i++){
     // console.log();
@@ -87,18 +82,7 @@ if(isBpresent){
 
 //handling -b command
 
-
-// if(isBpresent == true){
-//     bcommand();
-// }
 function bcommand(){
-
-    for(let i=0;i<filesArr.length;i++){
-        if(fs.existsSync(filesArr[i]) == false){
-            console.log("Invalid path!!!");
-            return;
-        }
-    }
 
     let content = "";
     for(let file = 0 ; file < filesArr.length ; file++){
@@ -127,20 +111,7 @@ function bcommand(){
 
 //handling -n command
 
-// if(isNpresent == true){
-//     ncommand();
-// }
-
-
 function ncommand(){
-    
-    
-    for(let file = 0 ; file < filesArr.length; file++){
-        if(fs.existsSync(filesArr[file])== false){
-            console.log("Invalid path!!!");
-            return;
-        }
-    }
     let content = "";
     for(let file = 0 ; file < filesArr.length; file++){
         
