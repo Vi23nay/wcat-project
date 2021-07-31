@@ -24,7 +24,9 @@ for(let i = 0 ; i < filesArr.length ; i++){
         console.log("path doesn't exists!!!");
         return;
     }
-    }
+}
+
+//handling 1st and 2nd command//
  if(inputArr[0].charAt(0) != '-'){
     for(let i = 0 ; i < filesArr.length ; i++){
         singlefileobj.command1fxn(filesArr[i]);
@@ -94,19 +96,23 @@ function bcommand(){
     // console.log(contentArr);
 
     let num = 1;
-    for(let i = 0 ; i < contentArr.length;i++){
+    for(let i = 0 ; i < contentArr.length - 1;i++){
         if(contentArr[i] != '\r'){
             contentArr[i] = num + " "+ contentArr[i];
+            console.log(contentArr[i]);
             num++;
+        }
+        else{
+            console.log();
         }
         
     }
-    ans = "";
-    for(let i=0 ; i < contentArr.length;i++){
-        ans = ans + contentArr[i] + "\n";
+    // ans = "";
+    // for(let i=0 ; i < contentArr.length;i++){
+    //     ans = ans + contentArr[i] + "\n";
 
-    }
-    console.log(ans);
+    // }
+    // console.log(ans);
 }
 
 
@@ -124,12 +130,13 @@ function ncommand(){
     // console.log(contentArr);
     let num = 1;
     let ans ="";
-    for(let i=0 ; i < contentArr.length ; i++){
+    for(let i=0 ; i < contentArr.length - 1 ; i++){
        
-        ans = ans + num + " " +contentArr[i]+ "\n";
+        contentArr[i] = num + " " +contentArr[i]+ "\n";
+        console.log(contentArr[i]);
         num++;
     }
-    console.log(ans);
+
 
     
 }
