@@ -18,18 +18,19 @@ for(let i = 0 ; i < inputArr.length ; i++){
 let singlefileobj = require("./command/singlefile");
 
 
-if(inputArr[0].charAt(0) != '-'){
-    for(let i = 0 ; i < filesArr.length ; i++){
-        if(fs.existsSync(filesArr[i]) == false){
-            console.log("path doesn't exists!!!");
-            return;
-        }
+
+for(let i = 0 ; i < filesArr.length ; i++){
+    if(fs.existsSync(filesArr[i]) == false){
+        console.log("path doesn't exists!!!");
+        return;
     }
-    
+    }
+ if(inputArr[0].charAt(0) != '-'){
     for(let i = 0 ; i < filesArr.length ; i++){
         singlefileobj.command1fxn(filesArr[i]);
-    }
 }
+ }
+
 
 
 //handling 3rd command -s
