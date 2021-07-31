@@ -63,8 +63,9 @@ let isNpresent = optionArr.includes("-n");
 
 if(isBpresent){
     if(isNpresent){
-        let cmd = optionArr[0];
-        if(cmd == "-n"){
+        let Bidx = optionArr.indexOf("-b");
+        let Nidx = optionArr.indexOf("-n");
+        if(Nidx < Bidx){
             ncommand();
         }else{
             bcommand();
