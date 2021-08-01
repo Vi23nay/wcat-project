@@ -14,14 +14,24 @@ for(let i = 0 ; i < inputArr.length ; i++){
 }
 
 
-
 let singlefileobj = require("./command/singlefile");
 
 
-
+//************checking whether path exists or not******************//
 for(let i = 0 ; i < filesArr.length ; i++){
     if(fs.existsSync(filesArr[i]) == false){
         console.log("path doesn't exists!!!");
+        return;
+    }
+}
+
+// let acceptedCommands = ['-s','','-n','-b'];
+//***********************check whether command is correct or not **********************//
+for(let cmd = 0 ; cmd < optionArr.length ; cmd++){
+    if(optionArr[cmd] == '-s' || optionArr[cmd] == '-n' || optionArr[cmd] == '-b' ||optionArr[cmd] == ''){
+
+    }else{
+        console.log("command doesn't exists!!!! please enter valid command!!!!");
         return;
     }
 }
@@ -30,20 +40,23 @@ for(let i = 0 ; i < filesArr.length ; i++){
  if(inputArr[0].charAt(0) != '-'){
     for(let i = 0 ; i < filesArr.length ; i++){
         singlefileobj.command1fxn(filesArr[i]);
+    }
 }
- }
 
 
+//*****************************reading files **********************************************//
+let content = "";
+for(let i = 0 ; i < filesArr.length ; i++){
+// console.log();
+content = content+fs.readFileSync(filesArr[i])+"\n";
+}
 
-//handling 3rd command -s
+
+//********************************handling 3rd command -s *********************************//
 let isSpresent = optionArr.includes("-s");
 if(isSpresent){
     
-    let content = "";
-    for(let i = 0 ; i < filesArr.length ; i++){
-    // console.log();
-    content = content+fs.readFileSync(filesArr[i])+"\n\r";
-    }
+    
     let contentArr = content.split("\n\r");
     let ans = "";
     for(let i=0;i<contentArr.length;i++){
@@ -69,8 +82,10 @@ if(isBpresent){
         let Bidx = optionArr.indexOf("-b");
         let Nidx = optionArr.indexOf("-n");
         if(Nidx < Bidx){
+            //n before b
             ncommand();
         }else{
+            // b before n
             bcommand();
         }
     }else{
@@ -84,21 +99,21 @@ if(isBpresent){
 
 
 
-//handling -b command
+//***************handling -b command******************//
 
 function bcommand(){
 
-    let content = "";
-    for(let file = 0 ; file < filesArr.length ; file++){
-        content = content + fs.readFileSync(filesArr[file]) + "\n";
-    }
+    // let content = "";
+    // for(let file = 0 ; file < filesArr.length ; file++){
+    //     content = content + fs.readFileSync(filesArr[file]) + "\n";
+    // }
     let contentArr = content.split("\n");
     // console.log(contentArr);
 
     let num = 1;
     for(let i = 0 ; i < contentArr.length - 1;i++){
         if(contentArr[i] != '\r'){
-            contentArr[i] = num + " "+ contentArr[i];
+            contentArr[i] = num + ". "+ contentArr[i];
             console.log(contentArr[i]);
             num++;
         }
@@ -117,14 +132,14 @@ function bcommand(){
 
 
 
-//handling -n command
+//*********************handling -n command******************//
 
 function ncommand(){
-    let content = "";
-    for(let file = 0 ; file < filesArr.length; file++){
+    // let content = "";
+    // for(let file = 0 ; file < filesArr.length; file++){
         
-        content = content + fs.readFileSync(filesArr[file]) + "\n";
-    }
+    //     content = content + fs.readFileSync(filesArr[file]) + "\n";
+    // }
 
     let contentArr = content.split("\n");
     // console.log(contentArr);
@@ -132,13 +147,10 @@ function ncommand(){
     let ans ="";
     for(let i=0 ; i < contentArr.length - 1 ; i++){
        
-        contentArr[i] = num + " " +contentArr[i]+ "\n";
+        contentArr[i] = num + ". " +contentArr[i];
         console.log(contentArr[i]);
         num++;
     }
-
-
-    
 }
 
 
